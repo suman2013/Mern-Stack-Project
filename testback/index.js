@@ -16,6 +16,10 @@ app.get("/logout", (req, res) => {
 	return res.send("Hey, You are signed out successfully");
 });
 
+app.get("/signup", (req, res) => {
+	return res.send("You are visiting signup page");
+});
+
 app.get("/user", (req, res) => {
 	res.send("Suman is using Githun");
 });
