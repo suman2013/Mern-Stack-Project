@@ -34,7 +34,12 @@ const isAdmin = (req, res, next) => {
 	next();
 }
 
-app.get("/admin", isAdmin, admin);
+const isLoggedIn = (req, res, next) => {
+	console.log("Admin log in");
+	next();
+}
+
+app.get("/admin", isLoggedIn, isAdmin, admin);
 
 app.listen(port, () => {
 	console.log("test app is running");
