@@ -24,6 +24,18 @@ app.get("/user", (req, res) => {
 	res.send("Suman is using Githun");
 });
 
+//Sample middleware
+const admin = (req, res) => {
+	return res.send("Admin Dashboard");
+}
+
+const isAdmin = (req, res, next) => {
+	console.log("isAdmin is running");
+	next();
+}
+
+app.get("/admin", isAdmin, admin);
+
 app.listen(port, () => {
-	console.log("app is running");
+	console.log("test app is running");
 });
