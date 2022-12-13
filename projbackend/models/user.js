@@ -37,7 +37,8 @@ const userSchema = new mongoose.Schema({
   purchases:{
     type: Array,
     default: []
-  }
+  },
+  {timestamps: true}
 });
 
 userSchema
@@ -50,7 +51,7 @@ userSchema
   .get(function(){
     return this._password;
   });
-  
+
 userSchema.method = {
   authenticate: function(plainPassword){
     return this.securePassword(plainPassword) === this.encry_password;
