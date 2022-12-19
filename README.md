@@ -1,2 +1,2 @@
 # Mern-Stack-Project
-A online tshirt store
+Project based on mern stack online platform for selling tshirt
