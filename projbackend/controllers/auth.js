@@ -40,7 +40,7 @@ exports.signin = (req, res) => {
   }
 
   User.findOne({email}, (err, user) => {
-    if(err){
+    if(err || !user){
       return res.status(402).json({
         error:"User email not found"
       })
