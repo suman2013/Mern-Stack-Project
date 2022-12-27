@@ -68,3 +68,30 @@ exports.signout = (req, res) => {
     message: "User signed out successfully"
   });
 };
+
+//Middleware
+exports.isSignedIn = expressJwt({
+  secret:process.env.SECRET,
+  userProperty: "auth"
+})
+
+exports.isAuthenticated = (req, res, next) => {
+  console.log(req.profile);
+  console.log(req.auth);
+  let checker = req.profile && req.auth && req.profile._id == req.auth.id;
+  if(!checker){
+    return res.status(403).json({
+      error:"ACCESS DENIED"
+    })
+  }
+  next();
+}
+
+exports.isAdmin = (req,res,next) => {
+  if(req.profile.role == 0){
+    return res.status(203).json({
+      error: "You are not admin , Access denied"
+    })
+  }
+  next();
+}
