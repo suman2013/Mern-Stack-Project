@@ -52,7 +52,7 @@ exports.signin = (req, res) => {
     }
 
     //create token
-    const token = jwt.sign({id: user._id}, process.env.SECRET);
+    const token = jwt.sign({_id: user._id}, process.env.SECRET);
     res.cookie("token", token, {expire: new Date() + 9999});
 
     //send response
@@ -76,9 +76,7 @@ exports.isSignedIn = expressJwt({
 })
 
 exports.isAuthenticated = (req, res, next) => {
-  console.log(req.profile);
-  console.log(req.auth);
-  let checker = req.profile && req.auth && req.profile._id == req.auth.id;
+  let checker = req.profile && req.auth && req.profile._id == req.auth._id;
   if(!checker){
     return res.status(403).json({
       error:"ACCESS DENIED"
