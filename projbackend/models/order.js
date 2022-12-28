@@ -16,18 +16,20 @@ const productCartScehma = new mongoose.Schema({
 const ProductCart = mongoose.model("ProductCart", productCartScehma);
 
 //Order Schema
-const orderSchema = new mongoose.Schema({
-  products:[productCartScehma],
-  transaction_id:{},
-  amount:{type:Number},
-  updated:Date,
-  address:String,
-  user:{
-    type:ObjectId,
-    ref:"User"
+const orderSchema = new mongoose.Schema(
+  {
+    products:[productCartScehma],
+    transaction_id:{},
+    amount:{type:Number},
+    updated:Date,
+    address:String,
+    user:{
+      type:ObjectId,
+      ref:"User"
+    }
   },
   {timestamps:true}
-});
+);
 
 const Order = mongoose.model("Order", orderSchema);
 
